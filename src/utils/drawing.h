@@ -8,6 +8,7 @@
 #include "matrix.h"
 #include <mfapi.h>
 #include <cmath>
+#include <random>
 
 class Drawing {
     public:
@@ -16,6 +17,12 @@ class Drawing {
 
         const int WIDTH = GetSystemMetrics(SM_CXSCREEN);
         const int HEIGHT = GetSystemMetrics(SM_CYSCREEN);
+
+        const std::vector<COLORREF> colors = {
+            RGB(255,0,0),
+            RGB(0,255,0),
+            RGB(0,0,255),
+        };
 
         Matrix screen;
 

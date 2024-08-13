@@ -16,7 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     int pixelX = widthGen(gen);
     int pixelY = heightGen(gen);
 
-    d.RandomPixel(pixelX, pixelY, 25, true);
+    d.RandomPixel(pixelX, pixelY, 25, false);
 
     return 0;
 }

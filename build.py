@@ -57,8 +57,8 @@ def main():
         print(f"No .cpp files found in {src_dir}")
         return
 
-    compile_flags = ['-O2', '-mwindows', '-Wall', '-Wextra', '-static-libgcc', '-static-libstdc++', '-v']
-    link_flags = ['-lole32', '-lshlwapi', '-lgdi32', '-lwindowscodecs']
+    compile_flags = ['-O2', '-mwindows', '-Wall', '-Wextra', '--static', '-static-libgcc', '-static-libstdc++', '-v']
+    link_flags = ['-lgdi32']
 
     object_files = compile_cpp_files(cpp_files, build_dir, flags=compile_flags)
     link_object_files(object_files, output_file, link_flags=link_flags)

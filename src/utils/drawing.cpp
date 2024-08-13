@@ -44,8 +44,12 @@ void Drawing::RandomPixel(int x, int y, int radius, bool checkPos) {
     ShowWindow(hwnd, SW_SHOWNORMAL);
 
     hdc = GetDC(hwnd);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> colorGen(0, colors.size());
     
-    DrawPixel(x, y, RGB(255, 0, 0));
+    DrawPixel(x, y, colors[colorGen(gen)]);
 
     // Force an update of the window
     InvalidateRect(hwnd, NULL, FALSE);
@@ -66,13 +70,15 @@ void Drawing::RandomPixel(int x, int y, int radius, bool checkPos) {
             }
         }
 
-        GetCursorPos(&mousepos);
-        std::cout << "Mouse X: " << mousepos.x << " Mouse Y: " << mousepos.y << "\n";
+        if(checkPos) {
+            GetCursorPos(&mousepos);
+            std::cout << "Mouse X: " << mousepos.x << " Mouse Y: " << mousepos.y << "\n";
 
-        int dx = mousepos.x - x;
-        int dy = mousepos.y - y;
-        if (sqrt(dx * dx + dy * dy) <= radius) {
-            shouldExit = true;
+            int dx = mousepos.x - x;
+            int dy = mousepos.y - y;
+            if (sqrt(dx * dx + dy * dy) <= radius) {
+                shouldExit = true;
+            }
         }
 
         Sleep(10);  // Add a small delay to reduce CPU usage
